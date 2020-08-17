@@ -12,6 +12,9 @@ int main()
 	// insecure patch
 	*(uint16_t *) 0x893200A2 = 0x2001;
 	*(uint16_t *) 0x893200A4 = 0x4770;
+	
+	// skip engineering delay (signature check emulation)
+	*(uint16_t *) 0x89317BA0 = 0xE010;
 
 	// jump
 	((void (*)()) 0x89310000)();
