@@ -6,7 +6,7 @@ ENTRY(_start)
 
 SECTIONS
 {
-    PROVIDE(__start__ = 0x82000510);
+    PROVIDE(__start__ = 0x82000000);
     . = __start__;
     . = ALIGN(16);
     .text :

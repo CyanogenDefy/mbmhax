@@ -1,6 +1,8 @@
 #include <stdint.h>
 #include <string.h>
 
+#define bootloader_version (*(uint16_t*) 0x8931101E)
+
 #define read_from_flash(a1, a2, a3, a4, a5) ((int (*)(int, int, char *, int, unsigned int)) (0x89312E76 + 1))(a1, a2, a3, a4, a5)
 
 int main()
@@ -9,12 +11,24 @@ int main()
 	
 	memcpy((char *) 0x89310000, (char *) 0x90000000, 0x40000);
 	
-	// insecure patch
-	*(uint16_t *) 0x893200A2 = 0x2001;
-	*(uint16_t *) 0x893200A4 = 0x4770;
-	
-	// skip engineering delay (signature check emulation)
-	*(uint16_t *) 0x89317BA0 = 0xE010;
+	if (bootloader_version == 0x1009) // Defy
+	{
+		// insecure patch
+		*(uint16_t *) 0x893200A2 = 0x2001;
+		*(uint16_t *) 0x893200A4 = 0x4770;
+		
+		// skip engineering delay (signature check emulation)
+		*(uint16_t *) 0x89317BA0 = 0xE010;
+	}
+	else if (bootloader_version == 0x1370) // MS2
+	{
+		// insecure patch
+		*(uint16_t *) 0x89320D8A = 0x2001;
+		*(uint16_t *) 0x89320D8C = 0x4770;
+		
+		// skip engineering delay (signature check emulation)
+		*(uint16_t *) 0x89317BAC = 0xE010;
+	}
 
 	// jump
 	((void (*)()) 0x89310000)();
