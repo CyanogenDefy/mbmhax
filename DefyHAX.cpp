@@ -678,8 +678,8 @@ void genPayloadMS(uint8_t* buff)
         0x4F, 0xF0, 0x00, 0x02,
         //MOVT R2, 0x0004
         0xC0, 0xF2, 0x04, 0x02,
-        //MOV R3, 0xB478
-        0x4B, 0xF2, 0x78, 0x43,
+        //MOV R3, 0xA0A8
+        0x4A, 0xF2, 0xA8, 0x03,
         //MOVT R3, 0x8F31
         0xC8, 0xF6, 0x31, 0x73,
         //BX R3
@@ -841,7 +841,7 @@ void exploitDevice(usb_dev_handle* dev, char *payloadPath)
 
     if (bootloader_version == 0x1009) // Defy
         genPayloadDefy(buff);
-    else if (bootloader_version == 0x20A0) // Milestone
+    else if (bootloader_version == 0x7890) // Milestone
         genPayloadMS(buff);
     else if (bootloader_version == 0x1270) // Milestone 2
         genPayloadMS2_1270(buff);

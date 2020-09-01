@@ -11,7 +11,7 @@
 	#define read_from_flash(a1, a2, a3, a4, a5) ((int (*)(int, int, char *, int, unsigned int)) (0x89312E76 + 1))(a1, a2, a3, a4, a5)
 	#define hax_mbm_segment 0x0100
 #elif defined(MOTO_SHOLES)
-	#define read_from_flash(a1, a2, a3, a4, a5) ((int (*)(int, int, char *, int, unsigned int)) (0x8F31D3C2 + 1))(a1, a2, a3, a4, a5)
+	#define read_from_flash(a1, a2, a3, a4, a5) ((int (*)(int, int, char *, int, unsigned int)) (0x8F31C016 + 1))(a1, a2, a3, a4, a5)
 	#define hax_mbm_segment 0x009b
 #elif defined(MOTO_MILESTONE2)
 	#define read_from_flash(a1, a2, a3, a4, a5) ((int (*)(int, int, char *, int, unsigned int)) (0x89312E76 + 1))(a1, a2, a3, a4, a5)
